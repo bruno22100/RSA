@@ -1,38 +1,5 @@
 from random import randint
-import math #vai ficar nas funções uteis
-
-def inteiro(a):
-	if a == " ":
-		return 32
-	else:
-		return ord(a) - 65
-
-def expmod(a, b, n):	
-	if b == 0:
-		return 1;
-	else:
-		res = expmod(a, b/2, n);
-		res = (res*res) % n;
-		if b%2 == 1:
-			res = (res*a) % n;
-		return res;
-
-
-"""verifica se o numero é primo"""
-def primo(a):
-	tam = int(math.sqrt(a));
-	#print(a,tam);
-	while tam > 1:
-		if a % tam == 0:
-			return 0
-		tam -= 1
-	return 1
-
-#print(primo(randint(0,100)))
-def mdc(a,b):
-	if a%b == 0:
-		return b;
-	return mdc(b,a%b)
+from auxiliar import *
 
 class RSA():
 	"""docstring for RSA"""
@@ -61,8 +28,8 @@ class RSA():
 	def encrypt(mensagem,chave_publica):
 		mensagem_nova = ""
 		for i in mensagem:
-			mensagem_nova += str((inteiro(i)**chave_publica[0])%chave_publica[1]) + ' '
-		f = open("NewMensage.txt", 'w')
+			mensagem_nova += str((inteiro(i) ** chave_publica[0]) % chave_publica[1]) + " "
+		f = open("mensagem_criptografada.txt", 'w')
 		f.write(mensagem_nova)
 		f.close()
 
