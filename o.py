@@ -1,6 +1,22 @@
 from random import randint
 import math #vai ficar nas funções uteis
 
+def inteiro(a):
+	if a == " ":
+		return 32
+	else:
+		return ord(a) - 65
+
+def expmod(a, b, n):	
+	if b == 0:
+		return 1;
+	else:
+		res = expmod(a, b/2, n);
+		res = (res*res) % n;
+		if b%2 == 1:
+			res = (res*a) % n;
+		return res;
+
 
 """verifica se o numero é primo"""
 def primo(a):
@@ -40,8 +56,17 @@ class RSA():
 				break
 		print(p,q,n,totiente,e)
 		return (n,e)
-		
+
+	@staticmethod
+	def encrypt(mensagem,chave_publica):
+		mensagem_nova = ""
+		for i in mensagem:
+			mensagem_nova += str((inteiro(i)**chave_publica[0])%chave_publica[1]) + ' '
+		f = open("NewMensage.txt", 'w')
+		f.write(mensagem_nova)
+		f.close()
+
 
 linha = [];
 a = RSA()
-a.setup(linha);
+a.encrypt("teste",a.setup(linha))
