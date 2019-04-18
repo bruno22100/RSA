@@ -1,8 +1,13 @@
+"""tranforma para inteiro um char"""
 def inteiro(a):
 	if a == " ":
-		return 32
-	else:
-		return ord(a) - 65
+		return 26
+	return ord(a)
+
+def convertToChar(a):
+    if a==26:
+    	return " "
+    return  chr(a)
 
 """verifica se o numero é primo"""
 def primo(a):
@@ -19,3 +24,9 @@ def mdc(a,b):
 	if a%b == 0:
 		return b;
 	return mdc(b,a%b)
+
+def inverseMod(a, b):
+    a = a%b
+    for i in range(1, b):
+        if(i*a)%b == 1: return i
+    return  1
